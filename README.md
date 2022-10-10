@@ -6,8 +6,11 @@ This project was developed during the Rocketseat Bootcamp. It is a fullstack pro
 
 ## Technologies
 
-Typescript
-Node.js | Express
-React | React Native
-Docker
-PostgreSQL | TypeORM
+- Typescript
+- Node.js
+- Express
+- React
+- React Native
+- Docker
+- PostgreSQL
+- TypeORM
