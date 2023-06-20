@@ -11,10 +11,50 @@ export const AppDataSource = new DataSource({
   migrations: ['./src/shared/infra/typeorm/migrations/*.ts'],
 });
 
+export const AppDataSourceMongoDB = new DataSource({
+  type: 'mongodb',
+  host: 'localhost',
+  port: 27017,
+  database: 'gostack_gobarber_mongodb',
+  useUnifiedTopology: true,
+  entities: ['./src/modules/**/infra/typeorm/schemas/*.ts'],
+});
+
 AppDataSource.initialize()
   .then(() => {
-    console.log('📊 Data Source has been initialized!');
+    console.log('📊 Data Source 1 (Postgres) has been initialized!');
   })
   .catch(err => {
-    console.error('Error during Data Source initialization', err);
+    console.error('Error during Data Source 1 (Postgres) initialization', err);
   });
+
+AppDataSourceMongoDB.initialize()
+  .then(() => {
+    console.log('📊 Data Source 2 (MongoDB) has been initialized!');
+  })
+  .catch(err => {
+    console.error('Error during Data Source 2 (MongoDB) initialization', err);
+  });
+
+// async function initializeDB() {
+//   await AppDataSource.initialize()
+//     .then(() => {
+//       console.log('📊 Data Source 1 (Postgres) has been initialized!');
+//     })
+//     .catch(err => {
+//       console.error(
+//         'Error during Data Source 1 (Postgres) initialization',
+//         err,
+//       );
+//     });
+
+//   await AppDataSourceMongoDB.initialize()
+//     .then(() => {
+//       console.log('📊 Data Source 2 (MongoDB) has been initialized!');
+//     })
+//     .catch(err => {
+//       console.error('Error during Data Source 2 (MongoDB) initialization', err);
+//     });
+// }
+
+// initializeDB();
