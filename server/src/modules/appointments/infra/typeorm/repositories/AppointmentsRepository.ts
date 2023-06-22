@@ -9,31 +9,6 @@ import ICreateAppointmentDTO from '@modules/appointments/dtos/ICreateAppointment
 import IFindAllInMonthFromProviderDTO from '@modules/appointments/dtos/IFindAllInMonthFromProviderDTO';
 import IFindAllInDayFromProviderDTO from '@modules/appointments/dtos/IFindAllInDayFromProviderDTO';
 
-/*
-const appointmentsRepository: IAppointmentsRepository =
-  AppDataSource.getRepository(Appointment).extend({
-    async findByDate(date: Date): Promise<Appointment | null> {
-      const findAppointment = await this.findOne({
-        where: { date },
-      });
-
-
-      return findAppointment;
-    },
-  });
-  */
-
-/*
-const appointmentsRepository: IAppointmentsRepository =
-  async function findByDate(date: Date): Promise<Appointment | null> {
-    const findAppointment = await ormRepository.findOne({
-      where: { date },
-    });
-
-    return findAppointment;
-  };
-  */
-
 class appointmentsRepository implements IAppointmentsRepository {
   private ormRepository: Repository<Appointment>;
 

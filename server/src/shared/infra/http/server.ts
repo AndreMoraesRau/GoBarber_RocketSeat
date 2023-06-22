@@ -1,3 +1,6 @@
+// import { resolve } from 'path';
+// import dotenv from 'dotenv';
+
 import 'reflect-metadata';
 
 import express, { Request, Response, NextFunction } from 'express';
@@ -10,6 +13,8 @@ import AppError from '@shared/errors/AppError';
 
 import '@shared/infra/typeorm';
 import '@shared/container';
+
+// dotenv.config({ path: resolve(__dirname, '../.env') });
 
 const app = express();
 

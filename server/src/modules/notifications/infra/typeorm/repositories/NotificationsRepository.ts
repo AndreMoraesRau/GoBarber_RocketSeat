@@ -6,7 +6,7 @@ import INotificationsRepository from '@modules/notifications/repositories/INotif
 import { AppDataSourceMongoDB } from 'data-source';
 import { MongoRepository } from 'typeorm';
 
-class notificationsRepository implements INotificationsRepository {
+class NotificationsRepository implements INotificationsRepository {
   private ormRepository: MongoRepository<Notification>;
 
   constructor() {
@@ -28,4 +28,4 @@ class notificationsRepository implements INotificationsRepository {
   }
 }
 
-export default notificationsRepository;
+export default NotificationsRepository;

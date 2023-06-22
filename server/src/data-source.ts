@@ -13,6 +13,10 @@ export const AppDataSource = new DataSource({
 
 export const AppDataSourceMongoDB = new DataSource({
   type: 'mongodb',
+  // url: process.env.MONGODB_CONNECTION,
+  // useNewUrlParser: true,
+  // synchronize: true,
+  // logging: true,
   host: 'localhost',
   port: 27017,
   database: 'gostack_gobarber_mongodb',
@@ -35,26 +39,3 @@ AppDataSourceMongoDB.initialize()
   .catch(err => {
     console.error('Error during Data Source 2 (MongoDB) initialization', err);
   });
-
-// async function initializeDB() {
-//   await AppDataSource.initialize()
-//     .then(() => {
-//       console.log('📊 Data Source 1 (Postgres) has been initialized!');
-//     })
-//     .catch(err => {
-//       console.error(
-//         'Error during Data Source 1 (Postgres) initialization',
-//         err,
-//       );
-//     });
-
-//   await AppDataSourceMongoDB.initialize()
-//     .then(() => {
-//       console.log('📊 Data Source 2 (MongoDB) has been initialized!');
-//     })
-//     .catch(err => {
-//       console.error('Error during Data Source 2 (MongoDB) initialization', err);
-//     });
-// }
-
-// initializeDB();
