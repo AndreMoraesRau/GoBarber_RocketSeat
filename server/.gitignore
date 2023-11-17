@@ -4,6 +4,8 @@ node_modules/
 build/
 temp/
 .env
+coverage
+src/data-source.ts
 
 tmp/*
 !tmp/.gitkeep
