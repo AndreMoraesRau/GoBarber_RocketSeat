@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
-export const Container = styled.button`
+interface ContainerProps {
+  // your other props here
+  children: React.ReactNode;
+}
+
+export const Container = styled.button<ContainerProps>`
   background: #ff9000;
   height: 56px;
   border-radius: 10px;

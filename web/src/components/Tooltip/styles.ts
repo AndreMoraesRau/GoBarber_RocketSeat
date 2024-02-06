@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 
-export const Container = styled.div`
+interface ContainerProps {
+  // your other props here
+  children: React.ReactNode;
+  className: string;
+}
+
+export const Container = styled.div<ContainerProps>`
   position: relative;
 
   span {
