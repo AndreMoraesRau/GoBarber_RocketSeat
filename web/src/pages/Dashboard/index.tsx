@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useState } from 'react';
 
 import { isToday, format, parseISO, isAfter } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -25,8 +25,21 @@ import { useAuth } from '../../hooks/auth';
 
 const Dashboard: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState(new Date());
+  const [currentMonth, setCurrentMonth] = useState(new Date());
+
+  const handleDateChange = useCallback((day: Date, modifiers: DayModifiers) => {
+    if (modifiers.available) {
+      setSelectedDate(day);
+    }
+  }, []);
 
   const { signOut, user } = useAuth();
+
+  // Function to disable Saturdays and Sundays
+  const isWeekend = (day: Date): boolean => {
+    const dayOfWeek = day.getDay();
+    return dayOfWeek === 0 || dayOfWeek === 6;
+  };
 
   return (
     <Container>
@@ -120,7 +133,15 @@ const Dashboard: React.FC = () => {
         </Schedule>
 
         <Calendar>
-          <DayPicker />
+          <DayPicker
+            fromMonth={new Date()}
+            disabled={isWeekend}
+            modifiers={{
+              available: { dayOfWeek: [1, 2, 3, 4, 5] },
+            }}
+            onDayClick={handleDateChange}
+            selected={selectedDate}
+          />
         </Calendar>
       </Content>
     </Container>

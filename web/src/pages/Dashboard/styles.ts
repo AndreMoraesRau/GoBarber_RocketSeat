@@ -1,5 +1,7 @@
 import styled from 'styled-components';
 
+import { shade } from 'polished';
+
 export const Container = styled.div``;
 
 export const Header = styled.header`
@@ -204,4 +206,69 @@ export const Appointment = styled.div`
 
 export const Calendar = styled.aside`
   width: 380px;
+
+  .rdp {
+    background: #28262e;
+    border-radius: 10px;
+  }
+
+  .rdp-wrapper {
+    padding-bottom: 0;
+  }
+
+  .rdp,
+  .rdp-month {
+    width: 100%;
+    max-width: 600px;
+  }
+
+  .rdp-month {
+    border-collapse: separate;
+    border-spacing: 8px;
+    margin: 16px;
+  }
+
+  .rdp-day {
+    width: 40px;
+    height: 40px;
+    margin: 2px;
+  }
+
+  .rdp-day:not(.rdp-day_outside) {
+    background: #3e3b47;
+    border-radius: 10px;
+    color: #fff;
+  }
+
+  .rdp:not(.rdp--interactionDisabled)
+    .rdp-day:not(.rdp-day_selected):not(.rdp-day_outside):hover {
+    background: ${shade(0.2, '#3e3b47')};
+  }
+
+  .rdp-day_disabled {
+    color: #666360 !important;
+    background: transparent !important;
+  }
+
+  .rdp-day_selected {
+    background: #ff9000 !important;
+    border-radius: 10px;
+    color: #232129 !important;
+  }
+
+  .rdp-day_today {
+    font-weight: normal;
+    color: red !important;
+    opacity: 1 !important;
+  }
+
+  @media (max-width: 1000px) {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+    .rdp {
+      margin-bottom: 42px;
+    }
+  }
 `;
