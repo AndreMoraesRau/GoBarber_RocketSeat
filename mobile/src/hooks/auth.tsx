@@ -8,9 +8,16 @@ import React, {
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from '../services/api';
 
+interface User {
+  id: string;
+  name: string;
+  email: string;
+  avatar_url: string;
+}
+
 interface AuthState {
   token: string;
-  user: object;
+  user: User;
 }
 
 interface SignInCredentials {
@@ -19,7 +26,7 @@ interface SignInCredentials {
 }
 
 interface AuthContextData {
-  user: object;
+  user: User;
   signIn(credentials: SignInCredentials): Promise<void>;
   signOut(): void;
   loading: boolean;
@@ -38,8 +45,8 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   useEffect(() => {
     async function loadStoragegData(): Promise<void> {
       const [token, user] = await AsyncStorage.multiGet([
-        '@GoBarber:token',
-        '@GoBarber:user',
+        '@gostack_gobarber:user_tokens',
+        '@gostack_gobarber:users',
       ]);
 
       if (token[1] && user[1]) {
@@ -58,18 +65,21 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       password,
     });
 
-    const { token, filteredUser: user } = response.data;
+    const { token, user } = response.data;
 
     await AsyncStorage.multiSet([
-      ['@GoBarber:token', token],
-      ['@GoBarber:user', JSON.stringify(user)],
+      ['@gostack_gobarber:user_tokens', token],
+      ['@gostack_gobarber:users', JSON.stringify(user)],
     ]);
 
     setData({ token, user });
   }, []);
 
   const signOut = useCallback(async () => {
-    await AsyncStorage.multiRemove(['@GoBarber:token', '@GoBarber:user']);
+    await AsyncStorage.multiRemove([
+      '@gostack_gobarber:user_tokens',
+      '@gostack_gobarber:users',
+    ]);
 
     setData({} as AuthState);
   }, []);

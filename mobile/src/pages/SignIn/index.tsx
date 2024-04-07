@@ -77,7 +77,7 @@ const SignIn: React.FC = () => {
 
         Alert.alert(
           'Authentication Error',
-          'An error occurred when trying to log in, please check the credentials',
+          `An error occurred when trying to log in, please check the credentials${err}`,
         );
       }
     },
