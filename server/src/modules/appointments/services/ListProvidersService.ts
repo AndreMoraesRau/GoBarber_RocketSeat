@@ -5,6 +5,8 @@ import User from '@modules/users/infra/typeorm/entities/User';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 
+import { classToPlain } from 'class-transformer';
+
 interface IRequest {
   user_id: string;
 }
@@ -31,7 +33,10 @@ class ListProvidersService {
         except_user_id: user_id,
       });
 
-      await this.cacheProvider.save(`providers-list:${user_id}`, users);
+      await this.cacheProvider.save(
+        `providers-list:${user_id}`,
+        classToPlain(users),
+      );
     }
 
     return users;

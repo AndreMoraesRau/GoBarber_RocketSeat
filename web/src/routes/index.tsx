@@ -6,6 +6,7 @@ import SignUp from '../pages/SignUp';
 import Dashboard from '../pages/Dashboard';
 import ForgotPassword from '../pages/ForgotPassword';
 import ResetPassword from '../pages/ResetPassword';
+import Profile from '../pages/Profile';
 
 import PrivateRoutes from './PrivateRoutes';
 import VerifySession from './VerifySession';
@@ -20,6 +21,7 @@ const AppRoutes: React.FC = () => (
     </Route>
 
     <Route element={<PrivateRoutes />}>
+      <Route path="/profile" element={<Profile />} />
       <Route path="/dashboard" element={<Dashboard />} />
     </Route>
   </Routes>

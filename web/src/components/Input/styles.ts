@@ -7,6 +7,7 @@ interface ContainerProps {
   isFilled: boolean;
   isErrored?: boolean;
   children: React.ReactNode;
+  style?: object;
 }
 
 export const Container = styled.div<ContainerProps>`

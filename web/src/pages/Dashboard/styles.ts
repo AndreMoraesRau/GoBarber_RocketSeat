@@ -1,6 +1,11 @@
 import styled from 'styled-components';
 
 import { shade } from 'polished';
+import { HTMLAttributes } from 'react';
+
+interface AppointmentProps {
+  key: string;
+}
 
 export const Container = styled.div``;
 
@@ -56,6 +61,15 @@ export const Profile = styled.div`
 
   strong {
     color: #f49000;
+  }
+
+  a {
+    text-decoration: none;
+    color: #ff9000;
+  }
+
+  a:hover {
+    opacity: 0.8;
   }
 `;
 
@@ -161,7 +175,7 @@ export const Section = styled.section`
   }
 `;
 
-export const Appointment = styled.div`
+export const Appointment = styled.div<AppointmentProps>`
   display: flex;
   align-items: center;
 
@@ -174,6 +188,7 @@ export const Appointment = styled.div`
     display: flex;
     align-items: center;
     color: #f4ede8;
+    width: 70px;
 
     svg {
       color: #ff9000;
@@ -202,7 +217,9 @@ export const Appointment = styled.div`
       font-size: 20px;
     }
   }
-`;
+
+  ${({ ...rest }) => rest}
+` as React.ComponentType<AppointmentProps & HTMLAttributes<HTMLDivElement>>;
 
 export const Calendar = styled.aside`
   width: 380px;
